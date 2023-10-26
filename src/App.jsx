@@ -8,7 +8,32 @@ function App() {
 
   return (
     <>
-      
+      <h1>Proyecto Final</h1>
+      <div>
+        <aside>
+          <form onSubmit={{}}>
+            <div>
+              <label>
+                Claim:
+                <input
+                  type="text"
+                  name="claim"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Claim type:
+                <input
+                  type="text"
+                  name="claimType"
+                />
+              </label>
+            </div>
+            <button type="submit">Enviar</button>
+          </form>
+        </aside>
+      </div>
     </>
   )
 }
