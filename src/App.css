@@ -71,6 +71,12 @@ body {
   height: 100vh; /* Establece la altura completa de la pantalla */
 }
 
+.modeltype-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
 .flex-container {
   display: flex;
   flex: 1; /* Hace que el contenedor se expanda para ocupar el espacio restante */
@@ -86,13 +92,35 @@ body {
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.2); 
   border-radius: 24px;
   height: auto;
+
+}
+
+.aside-container form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
+  text-align: start;
+}
+
+.title-container h2{
+  margin-bottom: 0;
+}
+
+.title-container p {
+  margin-top: 0;
+}
+
+.title-container div{
+  width: 100%;
 }
 
 .argument-input {
@@ -141,21 +169,36 @@ body {
 
 .result-container{
   width: 100%;
-  height: 50px;
   margin: 20px 0;
+}
+
+.result-container h1:first-child{
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.result-container h1:not(:first-child){
+  color: #02A676;
+  font-size: 60px;
+  text-transform: capitalize;
 }
 
 select {
   width: 100%;
-  padding: 10px 20px;
   border: 1px solid #a7a7a7;
   border-radius: 4px;
   font-size: 16px;
   border-radius: 5px;
   outline: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 
-.graph-container {
+.main-container {
   flex: 2; 
   background-color:#fff;
   width: 100%;
@@ -166,7 +209,12 @@ select {
   justify-content: center;
 }
 
-canvas{
-  width: 400px;
+.chart-component{
+  width: 80%;
+  height: 50%;
+}
+
+.css-1blkw4v-MuiResponsiveChart-container {
+  width:300px;
   height: 200px;
 }
