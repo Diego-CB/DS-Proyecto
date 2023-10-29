@@ -10,16 +10,51 @@ const customColors = [blue[500]]; // Define los colores personalizados aquí
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [modelResult, setModelResult] = useState("ineffective")
+  const [modelMetric, setModelMetric] = useState([0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05])
   const [selectedModelType, setSelectedModelType] = useState('RNN');
 
   const handleClaimTypeChange = (event) => {
     setSelectedModelType(event.target.value);
   };
   
-  const handleSubmit = (e) => {
-    console.log('Submit')
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Construye la URL con los valores de formData
+    const url = new URL('https://caguirre5.pythonanywhere.com/project');
+    // Object.entries(formData).forEach(([key, value]) => {
+    //   url.searchParams.append(key, value);
+    // });
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        const result = await response.json();
+        // Actualiza el estado con los resultados
+        console.log(result.result)
+        setModelResult(result.result)
+        setModelMetric(result.metric)
+        // setFormData({
+        //   ...formData,
+        //   hoa: result["hoa (R$)"],
+        //   rentAmount: result["rent amount (R$)"],
+        //   propertyTax: result["property tax (R$)"],
+        //   fireInsurance: result["fire insurance (R$)"],
+        //   total: result["total (R$)"],
+        // });
+      } else {
+        console.error('Error al obtener los datos del servidor');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
+  };
 
   return (
     <div className='app-container'>
@@ -96,14 +131,14 @@ function App() {
         <div className='main-container'>
           <div className='result-container'>
             <h1>Result:</h1>
-            <h1>Effective</h1>
+            <h1>{modelResult.toUpperCase()}</h1>
           </div>
           <div className='chart-component'>
             <LineChart 
-              xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+              xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
               series={[
                 {
-                  data: [2, 5.5, 2, 8.5, 1.5, 5],
+                  data: modelMetric,
                 },
               ]}
               colors={customColors}
